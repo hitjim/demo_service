@@ -1,1 +1,1 @@
-mongodb://db_user:Production1@ds019746.mlab.com:19746/projects
+your connection string
