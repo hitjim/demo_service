@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "POST, GET");
+  res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE");
   res.header("Access-Control-Max-Age", "3600");
   res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
    
@@ -71,8 +71,6 @@ app.post('/project', (req, res) => {
 app.put('/project', (req, res) => {
     var query = {'_id': mongoID.createFromHexString(req.body._id)};
     delete req.body._id;
-    console.log(query);
-    console.log(req.body);
 
     db.collection('projects').update(query, req.body, (err, result) => {
         if (err) return console.log(err)
