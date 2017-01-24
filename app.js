@@ -1,8 +1,16 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Methods", "POST, GET");
+  res.header("Access-Control-Max-Age", "3600");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+   
   next();
 });
 
@@ -53,9 +61,15 @@ app.get('/project/:id', (req, res) => {
 });
 
 app.post('/project', (req, res) => {
-    db.collection('projects').save(req.body, (err, result) => {
-        if (err) return console.log(err)
-        
-        res.send("Hi");
-    });
+        db.collection('projects').insert(req.body, (err, result) => {
+            if (err) return console.log(err)
+            res.send(req.body);
+        });
+})
+
+app.put('/project', (req, res) => {
+        db.collection('projects').update(req.body, (err, result) => {
+            if (err) return console.log(err)
+            res.send(req.body);
+        });
 })
