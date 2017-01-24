@@ -61,15 +61,21 @@ app.get('/project/:id', (req, res) => {
 });
 
 app.post('/project', (req, res) => {
+        console.log(req.body);
         db.collection('projects').insert(req.body, (err, result) => {
             if (err) return console.log(err)
-            res.send(req.body);
+            res.send({"status": "success"});
         });
 })
 
 app.put('/project', (req, res) => {
-        db.collection('projects').update(req.body, (err, result) => {
-            if (err) return console.log(err)
-            res.send(req.body);
-        });
+    var query = {'_id': mongoID.createFromHexString(req.body._id)};
+    delete req.body._id;
+    console.log(query);
+    console.log(req.body);
+
+    db.collection('projects').update(query, req.body, (err, result) => {
+        if (err) return console.log(err)
+        res.send({"status": "success"});
+    });
 })
