@@ -15,7 +15,7 @@ Quick RESTful API in Node and Express. Uses MongoDB bakcend.
 + Create an account and create a new Mongo deployment 
 + Create a user and password 
 + Copy the URL under the text "To connect using a driver via the standard MongoDB URI (what's this?):" 
-+ In the angular2_demo directory, Replace "<yourConnectionString>" in mongoConnectionString.txt with the url you copied and enter your username and password ("mongodb://<dbuser>:<dbpassword>@ds019746.mlab.com:19746/<example>")
++ In the angular2_demo directory, Replace yourConnectionString in mongoConnectionString.txt with the url you copied and enter your username and password (mongodb://dbuser:dbpassword@ds019746.mlab.com:19746/example)
 
 5)Type: npm run dev This launches the application with NodeMon. Any changes will be seen and the app will be resareted.
 
