@@ -77,3 +77,13 @@ app.put('/project', (req, res) => {
         res.send({"status": "success"});
     });
 })
+
+app.delete('/project/:id', (req, res) => {
+    var query = {'_id': mongoID.createFromHexString(req.params.id)};
+    delete req.body._id;
+
+    db.collection('projects').remove(query, (err, result) => {
+        if (err) return console.log(err)
+        res.send({"status": "success"});
+    });
+})
