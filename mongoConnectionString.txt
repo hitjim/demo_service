@@ -1,1 +1,1 @@
-your connection string
+<yourConnectionString>
