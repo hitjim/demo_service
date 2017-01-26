@@ -11,7 +11,7 @@ Quick RESTful API in Node and Express. Uses MongoDB bakcend.
 4)Type: npm install This installs the dependencies as defined in the package.json file.
 
 5)Create a sandbox MongoDB environment: 
-*Navigate to https://mlab.com 
+1)Navigate to https://mlab.com 
 *Create an account and create a new Mongo deployment 
 *Create a user and password 
 *Copy the URL under the text "To connect using a driver via the standard MongoDB URI (what's this?):" 
