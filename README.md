@@ -12,10 +12,10 @@ Quick RESTful API in Node and Express. Uses MongoDB bakcend.
 
 5)Create a sandbox MongoDB environment: 
 1)Navigate to https://mlab.com 
-*Create an account and create a new Mongo deployment 
-*Create a user and password 
-*Copy the URL under the text "To connect using a driver via the standard MongoDB URI (what's this?):" 
-*In the angular2_demo directory, Replace <
++ Create an account and create a new Mongo deployment 
++ Create a user and password 
++ Copy the URL under the text "To connect using a driver via the standard MongoDB URI (what's this?):" 
++ In the angular2_demo directory, Replace <
 
 5)Type: npm run dev This launches the application with NodeMon. Any changes will be seen and the app will be resareted.
 
