@@ -48,6 +48,13 @@ app.get('/projects', (req, res) => {
     })
 })
 
+app.get('/customers', (req, res) => {
+    var cursor = db.collection('customers').find().toArray(function(err, results) {
+        if (err) return console.log(err);
+        res.send(results);
+    })
+})
+
 app.get('/project/:id', (req, res) => {
     var query = {'_id': new mongoID.ObjectID(req.params.id)};
 
@@ -60,12 +67,32 @@ app.get('/project/:id', (req, res) => {
     });
 });
 
-app.post('/project', (req, res) => {
-        console.log(req.body);
-        db.collection('projects').insert(req.body, (err, result) => {
-            if (err) return console.log(err)
-            res.send({"status": "success"});
+app.get('/customer/:id', (req, res) => {
+    var query = {'_id': new mongoID.ObjectID(req.params.id)};
+
+    db.collection('customers', function(err, collection) {
+        if (err) return console.log(err);
+        collection.findOne(query, function (err, item) {
+            if (err) return console.log(err);
+            res.send(item);
         });
+    });
+});
+
+app.post('/project', (req, res) => {
+    console.log(req.body);
+    db.collection('projects').insert(req.body, (err, result) => {
+        if (err) return console.log(err)
+        res.send({"status": "success"});
+    });
+})
+
+app.post('/customer', (req, res) => {
+    console.log(req.body);
+    db.collection('customers').insert(req.body, (err, result) => {
+        if (err) return console.log(err)
+        res.send({"status": "success"});
+    });
 })
 
 app.put('/project', (req, res) => {
@@ -78,11 +105,31 @@ app.put('/project', (req, res) => {
     });
 })
 
+app.put('/customer', (req, res) => {
+    var query = {'_id': mongoID.createFromHexString(req.body._id)};
+    delete req.body._id;
+
+    db.collection('customers').update(query, req.body, (err, result) => {
+        if (err) return console.log(err)
+        res.send({"status": "success"});
+    });
+})
+
 app.delete('/project/:id', (req, res) => {
     var query = {'_id': mongoID.createFromHexString(req.params.id)};
     delete req.body._id;
 
     db.collection('projects').remove(query, (err, result) => {
+        if (err) return console.log(err)
+        res.send({"status": "success"});
+    });
+})
+
+app.delete('/customer/:id', (req, res) => {
+    var query = {'_id': mongoID.createFromHexString(req.params.id)};
+    delete req.body._id;
+
+    db.collection('customers').remove(query, (err, result) => {
         if (err) return console.log(err)
         res.send({"status": "success"});
     });
